@@ -1,4 +1,4 @@
-package OS_PROGASN2.TASK2;
+package OS_PROGASN2.TASK3;
 /**
  * Class BlockStack
  * Implements character block stack and operations upon it.
@@ -87,15 +87,14 @@ class BlockStack
 		++stack_access_counter;
 		try{
 			if(piPosition < 0 || piPosition > iTop ){
-				return this.acStack[piPosition];
+				throw new stackEmptyException("piPosition is out of bounds!" + this.piPosition);
 			}else{
-				throw new stackEmptyException("piPosition is out of bounds!");
+				return this.acStack[piPosition];
 			}
 		}catch(stackEmptyException e){
 			System.out.println("Error: " + e.getMessage());
 		}
 		return '\0';
-		
 	}
 
 	/**

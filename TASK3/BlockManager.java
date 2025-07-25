@@ -1,4 +1,4 @@
-package OS_PROGASN2.TASK2;
+package OS_PROGASN2.TASK3;
 // Import (aka include) some stuff.
 // import common.*;
 
@@ -33,7 +33,7 @@ public class BlockManager
 	/**
 	 * For atomicity
 	 */
-	//private static Semaphore mutex = new Semaphore(...);
+	private static Semaphore mutex = new Semaphore();
 
 	/*
 	 * For synchronization
@@ -42,7 +42,7 @@ public class BlockManager
 	/**
 	 * s1 is to make sure phase I for all is done before any phase II begins
 	 */
-	//private static Semaphore s1 = new Semaphore(...);
+	//private static Semaphore s1 = new Semaphore(0);
 
 	/**
 	 * s2 is for use in conjunction with Thread.turnTestAndSet() for phase II proceed
@@ -91,15 +91,26 @@ public class BlockManager
 			/*
 			 * Twist 'em all
 			 */
+
+			
 			ab1.start();
+
 			aStackProbers[0].start();
+			
 			rb1.start();
+
 			aStackProbers[1].start();
+			
 			ab2.start();
+
 			aStackProbers[2].start();
+
 			rb2.start();
+			
 			ab3.start();
+
 			aStackProbers[3].start();
+			
 			rb3.start();
 
 			System.out.println("main(): All the threads are ready.");
@@ -148,6 +159,7 @@ public class BlockManager
 	 */
 	static class AcquireBlock extends BaseThread
 	{
+		
 		/**
 		 * A copy of a block returned by pop().
                  * @see BlocStack#pop()
@@ -156,17 +168,20 @@ public class BlockManager
 
 		public void run()
 		{
+			mutex.Signal();
+			System.out.println("AcquireBlock======================================================="+ this.iTID);
 			System.out.println("AcquireBlock thread [TID=" + this.iTID + "] starts executing.");
 
-
+			
 			phase1();
-
+			
 
 			try
 			{
 				System.out.println("AcquireBlock thread [TID=" + this.iTID + "] requests Ms block.");
-
+				
 				this.cCopy = soStack.pop();
+				
 
 				System.out.println
 				(
@@ -193,13 +208,14 @@ public class BlockManager
 				System.exit(1);
 			}
 
+			
 			phase2();
 
 
 			System.out.println("AcquireBlock thread [TID=" + this.iTID + "] terminates.");
+			mutex.Wait();
 		}
 	} // class AcquireBlock
-
 
 	/**
 	 * Inner class ReleaseBlock.
@@ -213,11 +229,12 @@ public class BlockManager
 
 		public void run()
 		{
+			mutex.Signal();
+			System.out.println("ReleaseBlock======================================================="+ this.iTID);
 			System.out.println("ReleaseBlock thread [TID=" + this.iTID + "] starts executing.");
 
 
 			phase1();
-
 
 			try
 			{
@@ -231,7 +248,9 @@ public class BlockManager
 					" to position " + (soStack.getTop() + 1) + "."
 				);
 
+				
 				soStack.push(this.cBlock);
+				
 
 				System.out.println
 				(
@@ -251,11 +270,11 @@ public class BlockManager
 				System.exit(1);
 			}
 
-
 			phase2();
 
 
 			System.out.println("ReleaseBlock thread [TID=" + this.iTID + "] terminates.");
+			mutex.Wait();
 		}
 	} // class ReleaseBlock
 
@@ -267,11 +286,14 @@ public class BlockManager
 	{
 		public void run()
 		{
+			mutex.Signal();
+			System.out.println("ReleaseBlock=======================================================");
 			phase1();
-
+			
 
 			try
 			{
+
 				for(int i = 0; i < siThreadSteps; i++)
 				{
 					System.out.print("Stack Prober [TID=" + this.iTID + "]: Stack state: ");
@@ -289,6 +311,7 @@ public class BlockManager
 					System.out.println(".");
 
 				}
+
 			}
 			catch(Exception e)
 			{
@@ -296,9 +319,9 @@ public class BlockManager
 				System.exit(1);
 			}
 
-
+			
 			phase2();
-
+			mutex.Wait();
 		}
 	} // class CharStackProber
 

@@ -1,4 +1,4 @@
-package OS_PROGASN2.TASK2;
+package OS_PROGASN2.TASK3;
 
 /**
  * Class Semaphore
@@ -118,6 +118,11 @@ public class Semaphore
 	public synchronized void V()
 	{
 		this.Signal();
+	}
+
+	//Just to print the mutex
+	public int getiValue(){
+		return iValue;
 	}
 }
 
