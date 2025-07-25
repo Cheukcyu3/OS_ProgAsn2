@@ -8,8 +8,10 @@ RUN2 = -cp .. OS_PROGASN2.TASK2.BlockManager
 all: clean comp1 comp2
 
 clean:
-	@echo "cleaning .class files"
+	@echo "Allen is cleaning up"
 	find . -name "*.class" -print -delete
+# 	Write-Host "cleaning .class files"
+# 	get-childitem * -include *.class -recurse | remove-item
 
 comp%:
 	$(COMP) $(TASK$*)
