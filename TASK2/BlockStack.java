@@ -92,8 +92,11 @@ class BlockStack
 	public void push(final char pcBlock)
 	{
 		++stack_access_counter;
-		this.acStack[++this.iTop] = pcBlock;
-		System.out.println("Successful push");
+		if(this.acStack.isEmpty()){
+			this.acStack[++this.iTop] = pcBlock;
+			System.out.println("Successful push");
+		}
+	
 	}
 
 	/**
