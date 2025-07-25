@@ -1,6 +1,10 @@
 COMP = javac -g -Xlint:all
 TASK1 = TASK1/*.java
 TASK2 = TASK2/*.java
+TASK3 = TASK3/*.java
+TASK4 = TASK4/*.java
+TASK5 = TASK5/*.java
+
 RUN = java -XX:+PrintCommandLineFlags
 RUN1 = -cp .. OS_PROGASN2.TASK1.BlockManager
 RUN2 = -cp .. OS_PROGASN2.TASK2.BlockManager
@@ -8,7 +12,7 @@ RUN3 = -cp .. OS_PROGASN2.TASK3.BlockManager
 RUN4 = -cp .. OS_PROGASN2.TASK4.BlockManager
 RUN5 = -cp .. OS_PROGASN2.TASK5.BlockManager
 
-all: clean comp1 comp2
+all: clean comp1 comp2 comp3 comp4 comp5
 
 clean:
 	@echo "Allen is cleaning up"
