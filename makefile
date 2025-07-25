@@ -4,12 +4,16 @@ TASK2 = TASK2/*.java
 RUN = java -XX:+PrintCommandLineFlags
 RUN1 = -cp .. OS_PROGASN2.TASK1.BlockManager
 RUN2 = -cp .. OS_PROGASN2.TASK2.BlockManager
+RUN3 = -cp .. OS_PROGASN2.TASK3.BlockManager
+RUN4 = -cp .. OS_PROGASN2.TASK4.BlockManager
+RUN5 = -cp .. OS_PROGASN2.TASK5.BlockManager
 
 all: clean comp1 comp2
 
 clean:
 	@echo "Allen is cleaning up"
-	find . -name "*.class" -print -delete
+	del /S TASK1\*.java
+# . -name "*.class" -print -delete
 # 	Write-Host "cleaning .class files"
 # 	get-childitem * -include *.class -recurse | remove-item
 

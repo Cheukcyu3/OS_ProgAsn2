@@ -1,4 +1,4 @@
-package OS_PROGASN2.TASK1;
+package OS_PROGASN2.TASK2;
 // Import (aka include) some stuff.
 // import common.*;
 

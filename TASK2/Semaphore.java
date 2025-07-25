@@ -1,9 +1,10 @@
-package OS_PROGASN2.TASK1;
+package OS_PROGASN2.TASK2;
 
 /**
  * Class Semaphore
  * Implements artificial semaphore built on top of Java's sync primitives.
  *
+ * 
  * $Revision: 1.4 $
  * $Last Revision Date: 2019/02/02 $
  *

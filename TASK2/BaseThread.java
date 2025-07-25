@@ -1,4 +1,4 @@
-package OS_PROGASN2.TASK1;
+package OS_PROGASN2.TASK2;
 
 /**
  * Class BaseThread

@@ -1,4 +1,4 @@
-package OS_PROGASN2.TASK1;
+package OS_PROGASN2.TASK2;
 /**
  * Class BlockStack
  * Implements character block stack and operations upon it.
@@ -92,11 +92,9 @@ class BlockStack
 	public void push(final char pcBlock)
 	{
 		++stack_access_counter;
-		if(this.acStack.isEmpty()){
-			this.acStack[++this.iTop] = pcBlock;
-			System.out.println("Successful push");
-		}
-	
+		this.acStack[++this.iTop] = pcBlock;
+		System.out.println("Successful push");
+
 	}
 
 	/**
@@ -106,10 +104,17 @@ class BlockStack
 	public char pop()
 	{
 		++stack_access_counter;
-		char cBlock = this.acStack[this.iTop];
-		this.acStack[this.iTop--] = '$'; // Leave prev. value undefined
-		System.out.println("Successful pop");
-		return cBlock;
+		try{
+			char cBlock = this.acStack[this.iTop];
+			if(!this.isEmpty()){
+				this.acStack[this.iTop--] = '$'; // Leave prev. value undefined
+				System.out.println("Successful pop");
+				return cBlock;
+			}
+		}catch(stackEmptyException e){
+			throw new stackEmptyException("Stack is empty asshole!");
+		}
+		return '\0';
 	}
 
 	public int getTop(){
