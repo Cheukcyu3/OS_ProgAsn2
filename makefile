@@ -12,9 +12,9 @@ all: clean comp1 comp2
 
 clean:
 	@echo "Allen is cleaning up"
-	del /S TASK1\*.java
+	del /S *.class
 # . -name "*.class" -print -delete
-# 	Write-Host "cleaning .class files"
+# 	powershell -Command "Write-Host 'cleaning .class files'"
 # 	get-childitem * -include *.class -recurse | remove-item
 
 comp%:

@@ -1,4 +1,4 @@
-package OS_PROGASN2.TASK2;
+package OS_PROGASN2.TASK1;
 // Import (aka include) some stuff.
 // import common.*;
 
@@ -57,8 +57,6 @@ public class BlockManager
 		try
 		{
 			// Some initial stats...
-			System.out.println("\n\n");
-			System.out.println("========================================================");
 			System.out.println("Main thread starts executing.");
 			System.out.println("Initial value of top = " + soStack.getTop() + ".");
 			System.out.println("Initial value of stack top = " + soStack.pick() + ".");

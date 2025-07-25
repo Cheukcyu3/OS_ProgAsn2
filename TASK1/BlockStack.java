@@ -1,4 +1,4 @@
-package OS_PROGASN2.TASK2;
+package OS_PROGASN2.TASK1;
 /**
  * Class BlockStack
  * Implements character block stack and operations upon it.
@@ -26,17 +26,17 @@ class BlockStack
 	/**
 	 * Current size of the stack
 	 */
-	private int iSize = DEFAULT_SIZE;
+	public int iSize = DEFAULT_SIZE;
 
 	/**
 	 * Current top of the stack
 	 */
-	private int iTop  = 3;
+	public int iTop  = 3;
 
 	/**
 	 * stack[0:5] with four defined values
 	 */
-	private char acStack[] = new char[] {'a', 'b', 'c', 'd', '*', '*'};
+	public char acStack[] = new char[] {'a', 'b', 'c', 'd', '*', '*'};
 
 	/**
 	 * Default constructor
@@ -73,8 +73,7 @@ class BlockStack
 	 * @return top element of the stack, char
 	 */
 	public char pick()
-	{	
-		++stack_access_counter;
+	{		++stack_access_counter;
 		return this.acStack[this.iTop];
 	}
 
@@ -83,19 +82,8 @@ class BlockStack
 	 * @return the element, char
 	 */
 	public char getAt(final int piPosition)
-	{	
-		++stack_access_counter;
-		try{
-			if(piPosition < 0 || piPosition > iTop ){
-				return this.acStack[piPosition];
-			}else{
-				throw new stackEmptyException("piPosition is out of bounds!");
-			}
-		}catch(stackEmptyException e){
-			System.out.println("Error: " + e.getMessage());
-		}
-		return '\0';
-		
+	{		++stack_access_counter;
+		return this.acStack[piPosition];
 	}
 
 	/**
@@ -104,17 +92,7 @@ class BlockStack
 	public void push(final char pcBlock)
 	{
 		++stack_access_counter;
-		try{
-			if(isFull()){
-				throw new stackEmptyException("Full Stack !!!");
-			}else if(this.isEmpty()){
-				this.acStack[++this.iTop] = 'a';
-			}else{
-				this.acStack[++this.iTop] = pcBlock;
-			}
-		}catch(stackEmptyException e){
-			System.out.println("Error: " + e.getMessage());
-		}
+		this.acStack[++this.iTop] = pcBlock;
 		System.out.println("Successful push");
 	}
 
@@ -125,19 +103,10 @@ class BlockStack
 	public char pop()
 	{
 		++stack_access_counter;
-		try{
-			char cBlock = this.acStack[this.iTop];
-			if(!this.isEmpty()){
-				this.acStack[this.iTop--] = '$'; // Leave prev. value undefined
-				System.out.println("Successful pop");
-				return cBlock;
-			}else{
-				throw new stackEmptyException("Empty Stack !!!");
-			}
-		}catch(stackEmptyException e){
-			System.out.println("Error " + e.getMessage());
-		}
-		return '\0';
+		char cBlock = this.acStack[this.iTop];
+		this.acStack[this.iTop--] = '$'; // Leave prev. value undefined
+		System.out.println("Successful pop");
+		return cBlock;
 	}
 
 	public int getTop(){
@@ -154,14 +123,6 @@ class BlockStack
 
 	public boolean isEmpty(){
 		return (this.iTop == -1);
-	}
-
-	/*
-	 * Added an isFull function for using
-	 * in the 
-	 */
-	public boolean isFull(){
-		return (this.iTop==this.acStack.length-1);
 	}
 }
 
