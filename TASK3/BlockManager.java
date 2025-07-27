@@ -2,6 +2,7 @@ package OS_PROGASN2.TASK3;
 // Import (aka include) some stuff.
 // import common.*;
 
+
 /**
  * Class BlockManager
  * Implements character block "manager" and does twists with threads.
@@ -33,7 +34,7 @@ public class BlockManager
 	/**
 	 * For atomicity
 	 */
-	private static Semaphore mutex = new Semaphore();
+	private static Semaphore mutex = new Semaphore(1);
 
 	/*
 	 * For synchronization
@@ -135,7 +136,7 @@ public class BlockManager
 			System.out.println("Final value of stack top = " + soStack.pick() + ".");
 			System.out.println("Final value of stack top-1 = " + soStack.getAt(soStack.getTop() - 1) + ".");
 			System.out.println("Stack access count = " + soStack.getAccessCounter());
-
+			System.out.println(soStack.toString());
 			System.exit(0);
 		}
 		catch(InterruptedException e)
@@ -151,7 +152,7 @@ public class BlockManager
 		{
 			System.exit(1);
 		}
-	} // main()
+	}
 
 
 	/**
@@ -168,7 +169,7 @@ public class BlockManager
 
 		public void run()
 		{
-			mutex.Signal();
+			mutex.Wait();
 			System.out.println("AcquireBlock======================================================="+ this.iTID);
 			System.out.println("AcquireBlock thread [TID=" + this.iTID + "] starts executing.");
 
@@ -213,7 +214,7 @@ public class BlockManager
 
 
 			System.out.println("AcquireBlock thread [TID=" + this.iTID + "] terminates.");
-			mutex.Wait();
+			mutex.Signal();
 		}
 	} // class AcquireBlock
 
@@ -229,7 +230,7 @@ public class BlockManager
 
 		public void run()
 		{
-			mutex.Signal();
+			mutex.Wait();
 			System.out.println("ReleaseBlock======================================================="+ this.iTID);
 			System.out.println("ReleaseBlock thread [TID=" + this.iTID + "] starts executing.");
 
@@ -274,7 +275,7 @@ public class BlockManager
 
 
 			System.out.println("ReleaseBlock thread [TID=" + this.iTID + "] terminates.");
-			mutex.Wait();
+			mutex.Signal();
 		}
 	} // class ReleaseBlock
 
@@ -286,7 +287,7 @@ public class BlockManager
 	{
 		public void run()
 		{
-			mutex.Signal();
+			mutex.Wait();
 			System.out.println("ReleaseBlock=======================================================");
 			phase1();
 			
@@ -321,7 +322,7 @@ public class BlockManager
 
 			
 			phase2();
-			mutex.Wait();
+			mutex.Signal();
 		}
 	} // class CharStackProber
 

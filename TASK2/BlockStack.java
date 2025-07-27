@@ -61,7 +61,7 @@ class BlockStack
 			for(int i = 0; i < piSize - 2; i++)
 				this.acStack[i] = (char)('a' + i);
 
-			this.acStack[piSize - 2] = this.acStack[piSize - 1] = '$';
+			this.acStack[piSize - 2] = this.acStack[piSize - 1] = '*';
 
 			this.iTop = piSize - 3;
                         this.iSize = piSize;
@@ -87,9 +87,9 @@ class BlockStack
 		++stack_access_counter;
 		try{
 			if(piPosition < 0 || piPosition > iTop ){
-				return this.acStack[piPosition];
-			}else{
 				throw new stackEmptyException("piPosition is out of bounds!");
+			}else{
+				return this.acStack[piPosition];
 			}
 		}catch(stackEmptyException e){
 			System.out.println("Error: " + e.getMessage());
@@ -128,7 +128,7 @@ class BlockStack
 		try{
 			char cBlock = this.acStack[this.iTop];
 			if(!this.isEmpty()){
-				this.acStack[this.iTop--] = '$'; // Leave prev. value undefined
+				this.acStack[this.iTop--] = '*'; // Leave prev. value undefined
 				System.out.println("Successful pop");
 				return cBlock;
 			}else{
@@ -162,6 +162,14 @@ class BlockStack
 	 */
 	public boolean isFull(){
 		return (this.iTop==this.acStack.length-1);
+	}
+
+	@Override public String toString(){
+	StringBuilder string = new StringBuilder("acStack: ");
+		for (char elem : acStack) {
+			string.append(elem);
+		}
+	return string.toString();
 	}
 }
 

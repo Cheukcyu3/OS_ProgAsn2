@@ -124,7 +124,7 @@ public class BlockManager
 			System.out.println("Final value of stack top = " + soStack.pick() + ".");
 			System.out.println("Final value of stack top-1 = " + soStack.getAt(soStack.getTop() - 1) + ".");
 			System.out.println("Stack access count = " + soStack.getAccessCounter());
-
+			System.out.println(soStack.toString());
 			System.exit(0);
 		}
 		catch(InterruptedException e)
