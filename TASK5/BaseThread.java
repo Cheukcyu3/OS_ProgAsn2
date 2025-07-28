@@ -29,12 +29,12 @@ public class BaseThread extends Thread
 	/**	
 	 * Our Thread ID.
 	 */
-	public int iTID;					//should be protected
+	protected int iTID;
 
 	/**
 	 * TID of a thread to proceed to the phase II.
 	 */
-	public static int siTurn = 1; 		//should be private
+	private static int siTurn = 1;
 
 	/*
 	 * ------------
@@ -153,13 +153,10 @@ public class BaseThread extends Thread
 		if(siTurn == this.iTID)
 		{
 			// set siTurn = siTurn +/- 1;
-			if(pcIncreasingOrder == true){
+			if(pcIncreasingOrder == true)
 				siTurn++;
-				//System.err.println("* * * * * * * * * * * * * * * * New siTurn: "+this.siTurn);
-			}
-			//else
-				//siTurn--;
-				//System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+			else
+				siTurn--;
 
 			return true;
 		}
