@@ -180,6 +180,10 @@ public class BlockManager
 			s1.Wait();
 			s1.Signal();
 
+			if(s1.getiValue()==1){
+				System.out.println("All threads finished Phase I!!!!!!!!!!!");
+			}
+
 			mutex.Wait();
 			try
 			{
@@ -239,6 +243,9 @@ public class BlockManager
 			s1.Signal();
 			s1.Wait();
 			s1.Signal();
+			if(s1.getiValue()==1){
+				System.out.println("All threads finished Phase I!!!!!!!!!!!");
+			}
 			
 			mutex.Wait();
 			try
@@ -296,6 +303,10 @@ public class BlockManager
 			s1.Signal();
 			s1.Wait();
 			s1.Signal();
+
+			if(s1.getiValue()==1){
+				System.out.println("All threads finished Phase I!!!!!!!!!!!");
+			}
 			
 			mutex.Wait();
 			try
